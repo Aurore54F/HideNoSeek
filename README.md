@@ -26,7 +26,7 @@ cd ..
 ## Usage: PDGs Generation
 
 We can generate PDGs either from a folder containing JavaScript files or directly from a given JavaScript file.  
-In both cases, we are currently using 2 CPUs for the PDGs generation process. You can use more (or less) CPUs by modifying the variable NUM\_WORKERS from ```src/utility\_df.py```.
+In both cases, we are currently using 2 CPUs for the PDGs generation process. You can use more (or less) CPUs by modifying the variable NUM\_WORKERS from ```src/utility_df.py```.
 
 
 ### PDGs From a JS Folder
