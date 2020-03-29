@@ -88,12 +88,12 @@ In both cases, we are currently using 1 CPU, but you can change that by modifyin
 
 ## Example
 
-The folder `Benign-example` contains `example.js` the benign example from our paper, while `Malicious-seed/seed.js` is the malicious seed from our paper.
+The folder `example/Benign-example` contains `example.js` the benign example from our paper, while `example/Malicious-seed/seed.js` is the malicious seed from our paper.
 
 To detect clones between these 2 files, launch the following python3 commands from the `src` folder location:
 ```
 >>> from samples_generation import replace_ast
->>> replace_ast('../Benign-example/example.js', '../Malicious-seed/seed.js')
+>>> replace_ast('../example/Benign-example/example.js', '../example/Malicious-seed/seed.js')
 ```
 
 You will get the following output on stdout:
