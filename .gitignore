@@ -1,3 +1,8 @@
+# HideNoSeek
+Malicious-seed/seed-analysis/
+Malicious-seed/PDG
+Benign-example/PDG
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

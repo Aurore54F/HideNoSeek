@@ -18,7 +18,6 @@
 """
 
 import pickle
-import psutil
 from multiprocessing import Process, Queue
 
 from utility_df import *
@@ -50,7 +49,7 @@ def get_data_flow(input_file, benchmarks, store_pdgs=None, check_var=False):
         - store_pdgs: str
             Path of the folder to store the PDG in.
             Or None to pursue without storing it.
-        check_var: bool
+        - check_var: bool
             Build PDG just to check if our malicious variables are undefined. Default: False.
 
         -------
@@ -72,7 +71,6 @@ def get_data_flow(input_file, benchmarks, store_pdgs=None, check_var=False):
         ast = extended_ast.get_ast()
         # beautiful_print_ast(ast, delete_leaf=[])
         ast_nodes = ast_to_ast_nodes(ast, ast_nodes=Node('Program'))
-        # ast_nodes = search_dynamic(ast_nodes)  # Tried to handle dynamically generated JS
         benchmarks['AST'] = timeit.default_timer() - start
         start = micro_benchmark('Successfully produced the AST in', timeit.default_timer() - start)
         # draw_ast(ast_nodes, attributes=True, save_path=save_path_ast)
@@ -126,7 +124,6 @@ def worker(my_queue):
     while True:
         try:
             item = my_queue.get(timeout=2)
-            # print(item)
             handle_one_pdg(item[0], item[1], item[2])
         except Exception as e:
             break
@@ -143,8 +140,6 @@ def store_pdg_folder(folder_js):
     """
 
     start = timeit.default_timer()
-    ram = psutil.virtual_memory().used
-    # benchmarks = dict()
 
     my_queue = Queue()
     workers = list()
@@ -159,7 +154,6 @@ def store_pdg_folder(folder_js):
     for root, _, files in os.walk(folder_js):
         for js in files:
             my_queue.put([root, js, store_pdgs])
-            # time.sleep(0.1)  # Just enough to let the Queue finish
 
     for i in range(NUM_WORKERS):
         p = Process(target=worker, args=(my_queue,))
@@ -170,5 +164,4 @@ def store_pdg_folder(folder_js):
     for w in workers:
         w.join()
 
-    get_ram_usage(psutil.virtual_memory().used - ram)
     micro_benchmark('Total elapsed time:', timeit.default_timer() - start)

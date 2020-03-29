@@ -24,7 +24,7 @@ import signal
 
 sys.setrecursionlimit(400000)
 
-NUM_WORKERS = 2
+NUM_WORKERS = 1
 
 
 class UpperThresholdFilter(logging.Filter):
@@ -41,7 +41,7 @@ class UpperThresholdFilter(logging.Filter):
         return rec.levelno <= self._threshold
 
 
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.ERROR)
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 LOGGER = logging.getLogger()
 LOGGER.addFilter(UpperThresholdFilter(logging.CRITICAL))
 
@@ -50,11 +50,6 @@ def micro_benchmark(message, elapsed_time):
     """ Micro benchmarks. """
     logging.info('%s %s%s', message, str(elapsed_time), 's')
     return timeit.default_timer()
-
-
-def get_ram_usage(ram):
-    """ RAM usage. """
-    logging.info('%s %s%s', 'Current RAM usage:', str(ram / 1024 / 1024 / 1024), 'GB')
 
 
 class Timeout:

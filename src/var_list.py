@@ -13,7 +13,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 """
-    Definition of class VarList
+    Definition of class VarList.
 """
 
 import copy
