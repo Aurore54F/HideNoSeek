@@ -1,0 +1,6 @@
+2020-03-30: Version 1.0
+
+    Initial release: Static data flow-based analysis of JavaScript files to detect syntactic clones
+
+	* Program Dependency Graph Analysis: static analysis of JavaScript files to build the AST, which we enhance with control and data flow information to build a PDG;
+	* Slicing-Based Clone Detection: using backward slicing with respect to the control and data flow, we traverse a benign and a malicious AST to detect syntactic clones.

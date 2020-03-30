@@ -11,15 +11,13 @@ Please note that in its current state, the code is a Poc and not a fully-fledged
 ## Summary
 HideNoSeek is a novel and generic camouflage attack, which changes the constructs of malicious JavaScript samples to exactly reproduce an existing benign syntax. For this purpose, we statically enhance the Abstract Syntax Trees (ASTs) of valid JavaScript inputs with control and data flow information. We refer to the resulting data structure as Program Dependency Graph (PDG). In particular, HideNoSeek looks for isomorphic subgraphs between the malicious and the benign files. Specifically, it replaces benign sub-ASTs by their malicious equivalents (same syntactic structure) and adjusts the benign data dependencies–without changing the AST–, so that the malicious semantics is kept.
 
-For ethical reasons, we decided to publish neither the complete code of our clone selection module nor our clone replacement module. Therefore, this HideNoSeek version can be used to **detect** syntactic clones, but not to rewrite them.
+For ethical reasons, we decided to publish neither the complete code of our clone selection module nor our clone replacement module. Therefore, this HideNoSeek version can be used to **detect** syntactic clones, but not to **rewrite** them.
 
 
 ## Setup
 
 ```
-install python3 # (tested with  3.6.7)
-install python3-pip # (tested with 9.0.1)
-
+install python3 # (tested with 3.6.7)
 install nodejs # (tested with 8.10.0)
 install npm # (tested with 3.5.2)
 cd src
@@ -62,7 +60,7 @@ Note that, for this HideNoSeek version, we added a timeout of 60 seconds for the
 
 ### Clone Detection
 
-To find clones between the benign PDGs from the folder FOLDER\_BENIGN\_PDGS and the malicious ones from FOLDER\_MALICIOUS\_PDGS, launch the following python3 commands from the `src` folder location:
+To find clones between the benign PDGs from the folder FOLDER\_BENIGN\_PDGS and the malicious ones from FOLDER\_MALICIOUS\_PDGS, launch the following python3 command from the `src` folder location:
 ```
 $ python3 -c "from samples_generation import replace_ast_df_folder; replace_ast_df_folder('FOLDER_BENIGN_PDGS', 'FOLDER_MALICIOUS_PDGS')"
 ```
@@ -119,7 +117,7 @@ INFO:Could find 100.0% of the malicious nodes in the benign AST
 ```
 
 Our tool found 2 clones (each time composed of 2 statements). It means that the whole malicious seed could be rewritten in 2 different ways in the benign example.  
-In addition, the file `Malicious-seed/seed-analysis/example_seed.json`, containing additional clone information, was created.
+In addition, the file `example/Malicious-seed/seed-analysis/example_seed.json`, containing additional clone information, was created.
 
 
 ## Cite this work
